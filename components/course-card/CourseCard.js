@@ -20,7 +20,7 @@ export default function CourseCard({ cards }) {
       {/* End hero unit */}
       <Grid container spacing={4}>
         {cards.map((card) => (
-          <Grid item key={card.id} xs={12} sm={6} md={6}>
+          <Grid item key={card.course_id} xs={12} sm={6} md={6}>
             <Card
               sx={{
                 height: '100%',
@@ -36,7 +36,7 @@ export default function CourseCard({ cards }) {
                   padding: '1.5rem',
                   pt: '2rem',
                 }}
-                image={card.image}
+                image={card.images.full}
                 alt="random"
               />
               <CardContent sx={{ flexGrow: 1 }}>

@@ -928,8 +928,8 @@ API.courses.forEach((course) => {
     course.rating += 3;
   }
 });
-const fs = require('fs');
-fs.writeFileSync('./API.json', JSON.stringify(API));
+// const fs = require('fs');
+// fs.writeFileSync('./API.json', JSON.stringify(API));
 // code to fix ratings numbers
 
 // ****************************

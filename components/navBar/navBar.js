@@ -85,7 +85,7 @@ export default function NavBar() {
               MENU2
             </Link>
           )}
-          <Link color="#000000" underline="none" nowrap>
+          <Link color="#000000" underline="none">
             SIGN IN
           </Link>
           <Button

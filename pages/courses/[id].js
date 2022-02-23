@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Button } from '@mui/material';
+import { Box, Button, Rating, Typography } from '@mui/material';
 export default function CoursePage({ data }) {
   const course = data.course[0];
   const days = course.dates_available.map((date) => {
@@ -10,41 +10,71 @@ export default function CoursePage({ data }) {
   });
 
   return (
-    <div className="topLevelContainer courseProfile">
-      <Image src={course.image} width="400px" height="260px" alt="painting" />
-      <section className="lessonCard">
-        <h1 className="courseTitle">{course.course_title}</h1>
-        <p className="courseSubHead">{course.course_brief}</p>
-        <p className="courseTeacherName">{course.teacher_name}</p>
-        <p className="courseRating">rating: {course.rating}</p>
-        <p className="courseDates">
+    <Box className="topLevelContainer courseProfile">
+      <Image
+        src={course.images.thumb}
+        width="400px"
+        height="260px"
+        alt="painting"
+      />
+      <Box className="lessonCard">
+        <Typography className="courseTitle" variant="h1">
+          {course.course_title}{' '}
+        </Typography>
+
+        <Typography className="courseSubHead">
+          {' '}
+          {course.course_brief}
+        </Typography>
+
+        <Typography className="courseTeacherName" variant="h2">
+          {' '}
+          {course.teacher_name}
+        </Typography>
+
+        <Rating
+          name="read-only"
+          defaultValue={Number(course.rating)}
+          precision={0.5}
+          readOnly
+        />
+        <Box>
           {available.map((value, index) => {
             if (value == 'true') {
-              return <span style={{ fontWeight: 'bold' }}>{days[index]} </span>;
+              return (
+                <Typography sx={{ fontWeight: 'bold' }}>
+                  {days[index]}{' '}
+                </Typography>
+              );
             } else {
-              return <span style={{ color: 'gray' }}>{days[index]} </span>;
+              return (
+                <Typography sx={{ color: 'gray' }}>{days[index]} </Typography>
+              );
             }
           })}
-        </p>
-        <p className="courseOnlineStatus">
+        </Box>
+        <Box className="courseOnlineStatus">
           {course.is_offline === 'true' ? (
-            <span style={{ fontWeight: 'bold' }}>Offline</span>
+            <Typography sx={{ fontWeight: 'bold' }}>Offline</Typography>
           ) : (
-            <span style={{ color: 'gray' }}>Offline</span>
+            <Typography sx={{ color: 'gray' }}>Offline</Typography>
           )}{' '}
           |{' '}
           {course.is_online === 'true' ? (
-            <span style={{ fontWeight: 'bold' }}>Online</span>
+            <Typography sx={{ fontWeight: 'bold' }}>Online</Typography>
           ) : (
-            <span style={{ color: 'gray' }}>Online</span>
+            <Typography sx={{ color: 'gray' }}>Online</Typography>
           )}
-        </p>
+        </Box>
         <Button>{course.email}</Button>
-      </section>
-      <section className="courseDescription">
-        <h2>About this class</h2>
-        <p className="courseLongDescription">{course.long_description}</p>
-      </section>
+      </Box>
+      <Box>
+        {/* <section className="courseDescription"> */}
+        <Typography variant="h3">About this class</Typography>
+        <Typography className="courseLongDescription">
+          {course.long_description}
+        </Typography>
+      </Box>
 
       {/* 
 ---
@@ -55,7 +85,7 @@ export default function CoursePage({ data }) {
 - Action Button (text, function) (Child component)
 - Description (aboutClass, content) (Child component)
 */}
-    </div>
+    </Box>
   );
 }
 
